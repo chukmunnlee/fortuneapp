@@ -23,4 +23,7 @@ action "Push to Dockerhub" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   needs = ["Build fortuneapp", "Login to Dockerhub"]
   args = "[\"push\", \"$DOCKER_TAG\" ]"
+  env = {
+    DOCKER_TAG = "chukmunnlee/fortuneapp:$(echo $GITHUB_SHA | head -c7)"
+  }
 }
